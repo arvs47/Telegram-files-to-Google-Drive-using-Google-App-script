@@ -1,0 +1,53 @@
+ 
+// Send any message to this bot and it will send a photo in response.
+
+var telegram = require('telegram-bot-api');
+
+var api = new telegram({
+    token: 'Your BOT token',
+    updates: {
+                enabled: true,
+                get_interval: 1000
+             }
+});
+api.on('message', function(message)
+{
+    var chat_id = message.chat.id;
+        console.log("This is the user's chat id"+chat_id);
+
+api.sendPhoto({
+    chat_id : message.chat.id,
+    caption: 'This is my test image',
+    photo: 'image.jpeg'//replace your image url here
+})
+.then(function(data)
+{
+    console.log(data);
+});
+});
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+//second method 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ api.sendPhoto({
+        chat_id: <YOUR CHAT ID>,
+        caption: 'the image sent by file_id',
+
+        // it is a file_id that you get when someone upload an image to 
+        photo: 'AgADBAADZbo1G14XZAfdtXnWB5anFpRbYRkABMRWzQmdc4EQbPcCAAEC'
+    })
+    .then(function(data)
+    {
+        console.log(util.inspect(data, false, null));
+    });
